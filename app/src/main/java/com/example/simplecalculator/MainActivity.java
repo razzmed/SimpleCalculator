@@ -12,7 +12,9 @@ public class MainActivity extends AppCompatActivity {
     TextView result;
     Double firstValues, secondValues, result_op;
     String operation;
-    String saveString;
+    Double num1;
+    Double num2;
+    String oper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +22,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         result = findViewById(R.id.result_field);
         if (savedInstanceState != null){
-            saveString = savedInstanceState.getString("saved_string");
+            num1 = savedInstanceState.getDouble("num1");
+            num2 = savedInstanceState.getDouble("num2");
+            oper = savedInstanceState.getString("oper");
+            firstValues = num1;
+            secondValues = num2;
+            operation = oper;
         }
         Log.d("scalc", "onCreate");
     }
@@ -56,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onNumberClick(View view) {
-        saveString = "new saved String";
+
         switch (view.getId()) {
             case R.id.seven:
                 result.append("7");
@@ -169,8 +176,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        Log.d("scalc", "onSaveInstanceState");
-        outState.putString("save_string", saveString);
+        if (firstValues != null){
+            outState.putDouble("num1", firstValues);
+            }
+        if (secondValues != null){
+           outState.putDouble("num2", secondValues);
+
+        }
+        if (operation != null){
+           outState.putString("oper", operation);
+        }
 
     }
 }
