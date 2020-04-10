@@ -3,9 +3,11 @@ package com.example.simplecalculator;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -15,13 +17,17 @@ public class MainActivity extends AppCompatActivity {
     Double num1;
     Double num2;
     String oper;
+    String result_txt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         result = findViewById(R.id.result_field);
-        if (savedInstanceState != null){
+
+
+        if (savedInstanceState != null) {
             num1 = savedInstanceState.getDouble("num1");
             num2 = savedInstanceState.getDouble("num2");
             oper = savedInstanceState.getString("oper");
@@ -173,18 +179,26 @@ public class MainActivity extends AppCompatActivity {
         result.setText(result_op.toString());
     }
 
+    public void Save(View view) {
+        result_txt = result.getText().toString();
+        Intent intent = new Intent();
+        intent.putExtra("result", result_txt);
+        setResult(RESULT_OK, intent);
+        finish();
+    }
+
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        if (firstValues != null){
+        if (firstValues != null) {
             outState.putDouble("num1", firstValues);
-            }
-        if (secondValues != null){
-           outState.putDouble("num2", secondValues);
+        }
+        if (secondValues != null) {
+            outState.putDouble("num2", secondValues);
 
         }
-        if (operation != null){
-           outState.putString("oper", operation);
+        if (operation != null) {
+            outState.putString("oper", operation);
         }
 
     }
