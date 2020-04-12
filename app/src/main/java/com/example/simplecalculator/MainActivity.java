@@ -2,6 +2,7 @@ package com.example.simplecalculator;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         result = findViewById(R.id.result_field);
-
 
         if (savedInstanceState != null) {
             num1 = savedInstanceState.getDouble("num1");
