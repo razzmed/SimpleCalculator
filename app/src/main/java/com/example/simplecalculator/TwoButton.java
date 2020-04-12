@@ -29,7 +29,7 @@ public class TwoButton extends AppCompatActivity {
         list = new ArrayList<>();
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
-        MainAdapter adapter = new MainAdapter();
+        adapter = new MainAdapter();
         recyclerView.setAdapter(adapter);
 
         Button button = findViewById(R.id.open_calculator);
